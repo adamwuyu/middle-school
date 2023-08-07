@@ -4,6 +4,23 @@ from IPython.display import display, Latex
 import random
 
 
+def constLatexQuiz(question, answer):
+  display(Latex("{}=?".format(question)))
+  a = input("此算式的结果是？")
+  answer = sympify(latex2sympy(answer)).simplify()
+  a = sympify(latex2sympy(a)).simplify()
+  if answer == a:
+    display(Latex("正确！{}={}".format(question, a)))
+  else:
+    display(Latex("错误！{}≠{}".format(question, a)))
+
+
+def compareConstLatex(expr, expr_a):
+  expr = sympify(latex2sympy(expr)).simplify()
+  expr_a = sympify(latex2sympy(expr_a)).simplify()
+  return expr == expr_a
+
+
 def compareLatexXY(expr, expr_a):
   x, y = symbols('x y')
   expr = sympify(latex2sympy(expr))
